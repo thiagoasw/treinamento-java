@@ -1,0 +1,3 @@
+out > orange
+out > apple
+out > avocado
