@@ -6,7 +6,7 @@ public class SimpleFactory2 {
 
         ShortDescription.from("3432432434");
         ShortDescription.from("");
-        
+
     }
 }
 
@@ -14,21 +14,26 @@ class ShortDescription {
 
     private String value;
 
-    private ShortDescription() {} 
-    
+    @SuppressWarnings("unused")
+    private ShortDescription() {}
+
     protected ShortDescription(String valor) {
-        this.value = value;
+        this.value = valor;
     }
-    
+
+    public String getValue() {
+        return value;
+    }
+
     public static ShortDescription from(String description) {
-        
-        if (null == description) 
+
+        if (null == description)
             throw new NullPointerException("A descricao informada é nulla.");
-        
+
         if (description.isBlank()) {
             throw new IllegalArgumentException("A descricao informado está em branco.");
         }
-        
+
         return new ShortDescription(description);
     }
 }
