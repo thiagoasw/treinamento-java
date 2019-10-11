@@ -11,9 +11,7 @@ public class Customer {
 
     private final int id;
 
-    private final String name;
-
-    private final String surename;
+    private final Name name;
 
     private final LocalDate birthday;
 
@@ -24,7 +22,6 @@ public class Customer {
     private Customer(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
-        this.surename = builder.surename;
         this.birthday = builder.birthday;
         this.createAt = builder.createAt;
         this.address = builder.address;
@@ -38,12 +35,8 @@ public class Customer {
         return id;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
-    }
-
-    public String getSurename() {
-        return surename;
     }
 
     public LocalDate getBirthday() {
@@ -60,7 +53,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", surename=" + surename + ", birthday=" + birthday + ", createAt="
+        return "Customer [id=" + id + ", name=" + name + ", birthday=" + birthday + ", createAt="
                 + createAt + ", address=" + address + "]";
     }
 
@@ -68,9 +61,7 @@ public class Customer {
 
         private int id;
 
-        private String name;
-
-        private String surename;
+        private Name name;
 
         private LocalDate birthday;
 
@@ -83,19 +74,13 @@ public class Customer {
             return this;
         }
 
-        public Builder name(String name) {
+        public Builder name(Name name) {
             this.name = name;
-            return this;
-        }
-
-        public Builder surename(String surename) {
-            this.surename = surename;
             return this;
         }
 
         public Builder fullname(String name, String surename) {
-            this.name = name;
-            this.surename = surename;
+            this.name = Name.of(name, surename);
             return this;
         }
 
@@ -130,5 +115,16 @@ public class Customer {
             this.createAt = LocalDateTime.now();
             return new Customer(this);
         }
+    }
+
+    public void printName() {
+        System.out.println(name.getFirstName());
+        System.out.println(name.getSurename());
+        System.out.println(name.getFullName());
+    }
+
+    public boolean hasTheSameName(Name name) {
+        if (null == name) return false;
+        return this.name.equals(name);
     }
 }
