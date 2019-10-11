@@ -18,6 +18,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <lombok.version>1.18.8</lombok.version>
+
 		<junit.version>5.5.2</junit.version>
 
 		<surfire.plugin.version>2.22.2</surfire.plugin.version>
@@ -25,6 +27,13 @@
 	</properties>
 
 	<dependencies>
+
+        <dependency>
+	        <groupId>org.projectlombok</groupId>
+	        <artifactId>lombok</artifactId>
+	        <version>${lombok.version}</version>
+	        <scope>provided</scope>
+	    </dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
