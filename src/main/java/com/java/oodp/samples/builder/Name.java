@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Name {
 
+    public static final Name EMPTY = Name.of("Não informado.", "");
+    
     private final String firstname;
 
     private final String surename;
@@ -13,6 +15,11 @@ public class Name {
         this.surename = surename;
     }
 
+    public static Name empty() {
+        System.out.println("Devolvendo uma nova referencia de Name");
+        return Name.of("Não informado.", "");
+    }
+    
     public static Name of(String firstname, String surename) {
 
         if (null == firstname || firstname.isEmpty()) {

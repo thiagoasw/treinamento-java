@@ -2,6 +2,7 @@ package com.java.oodp.samples.builder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author Thiago A. de Souza Weber
@@ -21,7 +22,7 @@ public class Customer {
 
     private Customer(Builder builder) {
         this.id = builder.id;
-        this.name = builder.name;
+        this.name = Objects.requireNonNull(builder.name);
         this.birthday = builder.birthday;
         this.createAt = builder.createAt;
         this.address = builder.address;
@@ -108,19 +109,29 @@ public class Customer {
         }
         
         public Customer build() {
+            
+            if (null == name) {
+                name = Name.EMPTY;
+            }
+            
             return new Customer(this);
         }
 
         public Customer buildAsNew() {
             this.createAt = LocalDateTime.now();
-            return new Customer(this);
+            return this.build();
         }
     }
 
     public void printName() {
-        System.out.println(name.getFirstName());
-        System.out.println(name.getSurename());
-        System.out.println(name.getFullName());
+        System.out.println(name.getFirstName() + " - " + name.getFirstName().length());
+//        if (name.getSurename() != null) {
+//            System.out.println(name.getSurename() + " - " + name.getSurename().length());
+//        } else {
+//            System.out.println(name.getSurename() + " - " + 0);
+//        }
+        System.out.println(name.getSurename() + " - " + name.getSurename().length());
+        System.out.println(name.getFullName() + " - " + name.getFullName().length());
     }
 
     public boolean hasTheSameName(Name name) {
